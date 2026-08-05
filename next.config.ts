@@ -5,6 +5,9 @@ if (!process.env.DATABASE_URL) {
 }
 
 const nextConfig: NextConfig = {
+  outputFileTracingIncludes: {
+    "/*": ["./prisma/dev.db"],
+  },
   images: {
     remotePatterns: [
       {
