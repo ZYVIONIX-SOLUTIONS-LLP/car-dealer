@@ -1,0 +1,110 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  createdAt    DateTime @default(now())
+}
+
+model Brand {
+  id       String    @id @default(cuid())
+  name     String    @unique
+  slug     String    @unique
+  logoUrl  String
+  vehicles Vehicle[]
+}
+
+model Category {
+  id       String    @id @default(cuid())
+  name     String    @unique
+  slug     String    @unique
+  icon     String
+  vehicles Vehicle[]
+}
+
+model Vehicle {
+  id               String   @id @default(cuid())
+  slug             String   @unique
+  brandId          String
+  brand            Brand    @relation(fields: [brandId], references: [id])
+  categoryId       String
+  category         Category @relation(fields: [categoryId], references: [id])
+  model            String
+  variant          String
+  year             Int
+  price            Int
+  originalPrice    Int?
+  mileage          Int
+  fuelType         String
+  transmission     String
+  bodyType         String
+  engine           String
+  horsepower       Int
+  exteriorColor    String
+  interiorColor    String
+  vin              String
+  registrationYear Int
+  ownerCount       Int
+  serviceHistory   String
+  inspectionStatus String
+  location         String   @default("Mumbai, MH")
+  description      String
+  featured         Boolean  @default(false)
+  sold             Boolean  @default(false)
+  discountLabel    String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  images   VehicleImage[]
+  features VehicleFeature[]
+  enquiries Enquiry[]
+}
+
+model VehicleImage {
+  id        String  @id @default(cuid())
+  vehicleId String
+  vehicle   Vehicle @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+  url       String
+  order     Int     @default(0)
+}
+
+model VehicleFeature {
+  id        String  @id @default(cuid())
+  vehicleId String
+  vehicle   Vehicle @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+  label     String
+}
+
+model Enquiry {
+  id        String   @id @default(cuid())
+  name      String
+  phone     String
+  email     String?
+  vehicleId String?
+  vehicle   Vehicle? @relation(fields: [vehicleId], references: [id])
+  budget    String?
+  message   String?
+  type      String   @default("general")
+  status    String   @default("new")
+  createdAt DateTime @default(now())
+}
+
+model Testimonial {
+  id        String   @id @default(cuid())
+  name      String
+  role      String
+  rating    Int      @default(5)
+  quote     String
+  avatarUrl String
+  featured  Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
