@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node -e \"process.env.DATABASE_URL = process.env.DATABASE_URL || 'file:./dev.db'; const { execSync } = require('child_process'); execSync('npx prisma generate && npx prisma db push && npx tsx prisma/seed.ts && npx next build', { stdio: 'inherit', env: process.env });\"",
     "start": "next start",
     "lint": "eslint",
     "db:seed": "tsx --env-file=.env prisma/seed.ts"
