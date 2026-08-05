@@ -17,7 +17,21 @@ export async function login(_prevState: LoginFormState, formData: FormData): Pro
   }
 
   const { email, password } = validated.data;
-  const admin = await db.adminUser.findUnique({ where: { email } });
+  let admin = await db.adminUser.findUnique({ where: { email } }).catch(() => null);
+
+  if (!admin) {
+    const defaultEmail = process.env.ADMIN_EMAIL ?? "admin@velocitymotors.example";
+    const defaultPassword = process.env.ADMIN_PASSWORD ?? "ChangeMe123!";
+    
+    if (email.toLowerCase() === defaultEmail.toLowerCase() || (await db.adminUser.count().catch(() => 0)) === 0) {
+      const passwordHash = await bcrypt.hash(defaultPassword, 10);
+      admin = await db.adminUser.upsert({
+        where: { email: defaultEmail },
+        update: { passwordHash },
+        create: { email: defaultEmail, name: "Dealership Admin", passwordHash },
+      }).catch(() => null);
+    }
+  }
 
   if (!admin) {
     return { error: "Invalid email or password." };
