@@ -6,13 +6,12 @@ if (process.env.VERCEL || process.env.NODE_ENV === "production") {
   const tmpDbPath = "/tmp/dev.db";
   const sourceDbPath = path.join(process.cwd(), "prisma", "dev.db");
 
-  if (!fs.existsSync(tmpDbPath)) {
-    if (fs.existsSync(sourceDbPath)) {
-      try {
-        fs.copyFileSync(sourceDbPath, tmpDbPath);
-      } catch (e) {
-        console.error("Failed to copy dev.db to /tmp:", e);
-      }
+  // Always overwrite so stale warm-container caches never serve outdated data.
+  if (fs.existsSync(sourceDbPath)) {
+    try {
+      fs.copyFileSync(sourceDbPath, tmpDbPath);
+    } catch (e) {
+      console.error("Failed to copy dev.db to /tmp:", e);
     }
   }
   process.env.DATABASE_URL = `file:${tmpDbPath}`;
