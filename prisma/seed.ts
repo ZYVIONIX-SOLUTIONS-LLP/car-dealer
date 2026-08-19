@@ -107,10 +107,10 @@ const IMAGE_IDS = [
   "photo-1526726538690-5cbf956ae2fd",
   "photo-1580414057403-c5f451f30e1c",
   "photo-1567818735868-e71b99932e29",
-  "photo-1558618666-fcd25c85cd64", // car – replaced non-car image
+  "photo-1558618666-fcd25c85cd64", // car
   "photo-1619767886558-efdc259cde1a", // car – replaced pool/resort image
   "photo-1554744512-d6c603f27c54",
-  "photo-1490902931801-d6f80ca94fe4", // car – replaced buildings/skyscraper image
+  "photo-1490902931801-d6f80ca94fe4", // car
   "photo-1632245889029-e406faaa34cd",
   "photo-1544636331-e26879cd4d9b", // car – replaced second non-car image
   "photo-1571019613454-1cb2f99b2d8b",
