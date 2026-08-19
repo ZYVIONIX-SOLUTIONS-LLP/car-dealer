@@ -96,7 +96,7 @@ const IMAGE_IDS = [
   "photo-1542362567-b07e54358753",
   "photo-1553440569-bcc63803a83d",
   "photo-1502877338535-766e1452684a",
-  "photo-1544829099-b9a0c07fad1a",
+  "photo-1612544409744-e83b9f55bd1e", // car – replaced non-car image
   "photo-1571607388263-1044f9ea01dd",
   "photo-1518987048-93e29699e79a",
   "photo-1560958089-b8a1929cea89",
@@ -108,7 +108,7 @@ const IMAGE_IDS = [
   "photo-1580414057403-c5f451f30e1c",
   "photo-1567818735868-e71b99932e29",
   "photo-1547245324-d777c6f05e80",
-  "photo-1596436889106-be35e843f974",
+  "photo-1619767886558-efdc259cde1a", // car – replaced pool/resort image
   "photo-1554744512-d6c603f27c54",
   "photo-1541447271487-09612b3f49f7",
   "photo-1632245889029-e406faaa34cd",
