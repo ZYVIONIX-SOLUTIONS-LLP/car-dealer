@@ -100,7 +100,7 @@ const IMAGE_IDS = [
   "photo-1571607388263-1044f9ea01dd",
   "photo-1518987048-93e29699e79a",
   "photo-1560958089-b8a1929cea89",
-  "photo-1520031441872-265e4ff70366",
+  "photo-1606664515524-ed2f786a0bd6", // car – replaced pool resort image
   "photo-1494905998402-395d579af36f",
   "photo-1583121274602-3e2820c69888",
   "photo-1493238792000-8113da705763",
@@ -112,11 +112,12 @@ const IMAGE_IDS = [
   "photo-1554744512-d6c603f27c54",
   "photo-1541447271487-09612b3f49f7",
   "photo-1632245889029-e406faaa34cd",
-  "photo-1615840287214-7ff58936c4cf",
+  "photo-1544636331-e26879cd4d9b", // car – replaced second non-car image
   "photo-1571019613454-1cb2f99b2d8b",
   "photo-1617469767053-d3b523a0b982",
   "photo-1617814076367-b759c7d7e738",
 ];
+
 
 function imageUrl(id: string) {
   return `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1600&q=80`;
