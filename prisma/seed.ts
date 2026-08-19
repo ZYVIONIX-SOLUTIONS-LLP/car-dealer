@@ -313,6 +313,19 @@ async function main() {
     });
   }
 
+  // Override the Rolls-Royce Ghost's first image with the actual car photo.
+  console.log("Patching Rolls-Royce Ghost image...");
+  const ghost = await db.vehicle.findFirst({
+    where: { model: "Ghost", variant: "Standard Wheelbase" },
+    include: { images: { orderBy: { order: "asc" } } },
+  });
+  if (ghost?.images[0]) {
+    await db.vehicleImage.update({
+      where: { id: ghost.images[0].id },
+      data: { url: "/images/rr-ghost.jpg" },
+    });
+  }
+
   console.log("Seeding testimonials...");
   await db.testimonial.deleteMany();
   for (const t of TESTIMONIALS) {
